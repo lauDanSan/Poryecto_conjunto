@@ -1,0 +1,19 @@
+project_id = "migpvitowwqalxuhhbnb"
+
+[functions.validar-apartamento]
+verify_jwt = false
+
+[functions.subir-evidencia]
+verify_jwt = false
+
+[functions.crear-comentario]
+verify_jwt = false
+
+[functions.actualizar-estado]
+verify_jwt = false
+
+[functions.registrar-consentimiento]
+verify_jwt = false
+
+[functions.reporte-excel]
+verify_jwt = false

@@ -1,0 +1,314 @@
+:root {
+  --azul-acero: #3b6ea5;
+  --azul-acero-oscuro: #2c527d;
+  --fondo: #f4f6f8;
+  --texto: #1f2937;
+  --borde: #d7dde3;
+  --verde: #1f8a4c;
+  --verde-claro: #e4f6ea;
+  --ambar: #b8860b;
+  --ambar-claro: #fdf3d9;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--texto);
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  background: var(--azul-acero);
+  color: white;
+  font-size: 0.95rem;
+}
+
+button:hover:not(:disabled) {
+  background: var(--azul-acero-oscuro);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.boton-secundario {
+  background: white;
+  color: var(--azul-acero);
+  border: 1px solid var(--azul-acero);
+}
+
+.boton-secundario:hover:not(:disabled) {
+  background: var(--fondo);
+}
+
+input, select, textarea {
+  padding: 8px 10px;
+  border: 1px solid var(--borde);
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.9rem;
+  color: #374151;
+}
+
+.pagina-centrada {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.pagina-ancha {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.tarjeta {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 32px;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tarjeta h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  color: var(--azul-acero-oscuro);
+}
+
+.subtitulo {
+  margin: 0;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.fila-selects {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.fila-checkbox {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.mensaje-error {
+  color: #b91c1c;
+  background: #fee2e2;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.enlace-admin {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--azul-acero);
+}
+
+.encabezado-vista {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.acciones-encabezado {
+  display: flex;
+  gap: 8px;
+}
+
+.detalle-apartamento {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.encabezado-detalle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.insignia {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.insignia-verde {
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+
+.insignia-ambar {
+  background: var(--ambar-claro);
+  color: var(--ambar);
+}
+
+.acciones-admin {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.grilla-fotos {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.foto-item {
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--borde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--azul-acero);
+}
+
+.foto-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foto-subir {
+  cursor: pointer;
+  background: var(--fondo);
+}
+
+.lista-comentarios {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.lista-comentarios li {
+  border-bottom: 1px solid var(--borde);
+  padding-bottom: 8px;
+}
+
+.lista-comentarios p {
+  margin: 4px 0;
+}
+
+.etiqueta-autor {
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.sin-datos {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+.form-comentario {
+  display: flex;
+  gap: 8px;
+}
+
+.form-comentario textarea {
+  flex: 1;
+  min-height: 44px;
+  resize: vertical;
+}
+
+.tarjetas-resumen {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.tarjeta-resumen {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.tarjeta-resumen .numero {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.tarjeta-verde .numero {
+  color: var(--verde);
+}
+
+.tarjeta-ambar .numero {
+  color: var(--ambar);
+}
+
+.controles-filtro {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.controles-filtro input {
+  flex: 1;
+}
+
+.mapa-torres {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 8px;
+}
+
+.punto-apto {
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 0.8rem;
+  color: white;
+}
+
+.punto-verde {
+  background: var(--verde);
+}
+
+.punto-ambar {
+  background: var(--ambar);
+}
