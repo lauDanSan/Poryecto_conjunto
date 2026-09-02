@@ -52,6 +52,22 @@ export default function AdminPanel() {
     });
   }, [apartamentos, filtroTorre, busqueda]);
 
+  const torresColumnas = useMemo(() => {
+    return torres.map((torre) => {
+      const apartamentosTorre = apartamentosFiltrados.filter((a) => a.torre === torre);
+      const pisos = [...new Set(apartamentosTorre.map((a) => a.piso))].sort((a, b) => b - a);
+      return {
+        torre,
+        pisos: pisos.map((piso) => ({
+          piso,
+          apartamentos: apartamentosTorre
+            .filter((a) => a.piso === piso)
+            .sort((a, b) => a.numero_apto.localeCompare(b.numero_apto)),
+        })),
+      };
+    });
+  }, [torres, apartamentosFiltrados]);
+
   function handleSalir() {
     cerrarSesionAdmin();
     navigate('/admin');
@@ -61,7 +77,7 @@ export default function AdminPanel() {
     setError('');
     setDescargando(true);
     try {
-      await descargarReporteExcel(adminAuth);
+      await descargarReporteExcel();
     } catch (err) {
       setError(err.message);
     } finally {
@@ -116,15 +132,29 @@ export default function AdminPanel() {
           </section>
 
           <section className="mapa-torres">
-            {apartamentosFiltrados.map((a) => (
-              <button
-                key={a.id}
-                className={`punto-apto ${estados[a.id] === 'Revisado' ? 'punto-verde' : 'punto-ambar'}`}
-                onClick={() => setSeleccionado(a)}
-                title={`Torre ${a.torre} Piso ${a.piso} Apto ${a.numero_apto}`}
-              >
-                T{a.torre}-P{a.piso}-{a.numero_apto}
-              </button>
+            {torresColumnas.map(({ torre, pisos }) => (
+              <div className="columna-torre" key={torre}>
+                <h3 className="titulo-torre">Torre {torre}</h3>
+                <div className="pisos-torre">
+                  {pisos.map(({ piso, apartamentos: aptosPiso }) => (
+                    <div className="fila-piso" key={piso}>
+                      <span className="etiqueta-piso">P{piso}</span>
+                      <div className="aptos-piso">
+                        {aptosPiso.map((a) => (
+                          <button
+                            key={a.id}
+                            className={`punto-apto ${estados[a.id] === 'Revisado' ? 'punto-verde' : 'punto-ambar'}`}
+                            onClick={() => setSeleccionado(a)}
+                            title={`Torre ${a.torre} Piso ${a.piso} Apto ${a.numero_apto}`}
+                          >
+                            {a.numero_apto}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             ))}
           </section>
         </>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { verificarAdmin } from '../lib/api';
 import { useAdminSession } from '../context/AdminSessionContext';
 
@@ -40,6 +40,7 @@ export default function AdminLogin() {
         </label>
         {error && <p className="mensaje-error">{error}</p>}
         <button type="submit" disabled={cargando}>{cargando ? 'Ingresando...' : 'Ingresar'}</button>
+        <Link className="enlace-admin" to="/">← Volver al acceso de residente</Link>
       </form>
     </div>
   );

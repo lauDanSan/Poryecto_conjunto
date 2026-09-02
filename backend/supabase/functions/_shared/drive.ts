@@ -1,18 +1,16 @@
 import { google } from 'npm:googleapis@144';
 
 export function getDriveClient() {
-  const email = Deno.env.get('GOOGLE_SERVICE_ACCOUNT_EMAIL');
-  const rawKey = Deno.env.get('GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY');
+  const clientId = Deno.env.get('GOOGLE_OAUTH_CLIENT_ID');
+  const clientSecret = Deno.env.get('GOOGLE_OAUTH_CLIENT_SECRET');
+  const refreshToken = Deno.env.get('GOOGLE_OAUTH_REFRESH_TOKEN');
 
-  if (!email || !rawKey) {
-    throw new Error('Faltan credenciales de la cuenta de servicio de Google Drive');
+  if (!clientId || !clientSecret || !refreshToken) {
+    throw new Error('Faltan credenciales OAuth de Google Drive');
   }
 
-  const auth = new google.auth.JWT({
-    email,
-    key: rawKey.replace(/\\n/g, '\n'),
-    scopes: ['https://www.googleapis.com/auth/drive'],
-  });
+  const auth = new google.auth.OAuth2(clientId, clientSecret);
+  auth.setCredentials({ refresh_token: refreshToken });
 
   return google.drive({ version: 'v3', auth });
 }

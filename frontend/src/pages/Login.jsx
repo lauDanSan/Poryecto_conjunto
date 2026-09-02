@@ -21,7 +21,7 @@ export default function Login() {
     async function cargarApartamentos() {
       const { data, error } = await supabase
         .from('apartamentos')
-        .select('id, torre, piso, numero_apto')
+        .select('id, torre, piso, numero_apto, registrado')
         .order('torre')
         .order('piso')
         .order('numero_apto');
@@ -78,11 +78,6 @@ export default function Login() {
         numero_apto: numeroApto,
         nombre,
       });
-
-      if (!resultado.valido) {
-        setError('El apartamento indicado no existe. Verifica torre, piso y numero.');
-        return;
-      }
 
       await registrarConsentimiento({ apartamento_id: resultado.apartamento.id, nombre });
 
@@ -142,6 +137,26 @@ export default function Login() {
               ))}
             </select>
           </label>
+        </div>
+
+        <p className="subtitulo">
+          Si tu apartamento ya fue registrado antes, ingresa con el mismo nombre que usaste la primera vez.
+        </p>
+
+        <div className="aviso-privacidad">
+          <p>
+            De conformidad con la <strong>Ley 1581 de 2012</strong> y el <strong>Decreto 1377 de 2013</strong>,
+            por medio de los cuales se dictan las disposiciones generales para la proteccion de datos
+            personales en Colombia, usted autoriza el tratamiento de sus datos personales (nombre,
+            torre, piso y apartamento) suministrados en este formulario.
+          </p>
+          <p>
+            Estos datos seran usados unicamente para fines internos del conjunto residencial,
+            especificamente para recopilar informacion sobre los danos causados por el terremoto
+            ocurrido el 10 de agosto de 2026, incluyendo evidencias fotograficas, comentarios y el
+            seguimiento del estado de revision de cada apartamento. No seran compartidos con terceros
+            ajenos a la administracion del conjunto.
+          </p>
         </div>
 
         <label className="fila-checkbox">

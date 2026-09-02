@@ -4,7 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "seed:apartamentos": "node scripts/seed_apartamentos.js"
+    "seed:apartamentos": "node scripts/seed_apartamentos.js",
+    "dev:local-uploads": "node local-server/server.js",
+    "drive:get-refresh-token": "node scripts/get_drive_refresh_token.js",
+    "drive:seed-folders-oauth": "node scripts/seed_drive_folders_oauth.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.4",

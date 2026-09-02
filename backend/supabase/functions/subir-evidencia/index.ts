@@ -2,6 +2,7 @@ import { createClient } from 'npm:@supabase/supabase-js@2';
 import { corsHeaders, withCors } from '../_shared/cors.ts';
 import { getDriveClient } from '../_shared/drive.ts';
 import { Readable } from 'node:stream';
+import { Buffer } from 'node:buffer';
 
 const TIPOS_PERMITIDOS: Record<string, string> = {
   'image/jpeg': 'jpg',
